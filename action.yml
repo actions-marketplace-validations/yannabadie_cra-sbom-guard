@@ -1,0 +1,49 @@
+name: "CRA SBOM Guard — EU Cyber Resilience Act Art. 14 Scanner"
+author: "Yann Abadie"
+description: "Generate CycloneDX 1.5 SBOM & detect CISA KEV / OSV vulnerabilities for EU CRA Art. 14 (24h/72h ENISA) — zero deps."
+
+branding:
+  icon: "shield"
+  color: "blue"
+
+inputs:
+  target:
+    description: "Directory or manifest file to scan (default: repository root '.')."
+    required: false
+    default: "."
+  sbom-output:
+    description: "Output path for generated CycloneDX 1.5 JSON SBOM."
+    required: false
+    default: "sbom.cdx.json"
+  report-output:
+    description: "Output path for structured JSON CRA Art. 14 compliance report."
+    required: false
+    default: "cra-report.json"
+  fail-on-kev:
+    description: "Fail workflow (exit 1) when an actively exploited CISA KEV vulnerability triggers CRA Art. 14 24h ENISA reporting."
+    required: false
+    default: "true"
+  max-depth:
+    description: "Maximum directory traversal depth when scanning manifests."
+    required: false
+    default: "4"
+
+outputs:
+  sbom-path:
+    description: "Resolved path to the generated CycloneDX 1.5 JSON SBOM."
+  report-path:
+    description: "Resolved path to the generated JSON CRA Art. 14 compliance report."
+  components-count:
+    description: "Total unique software components extracted into the SBOM."
+  kev-count:
+    description: "Number of actively exploited CISA KEV findings (CRA Art. 14 24h ENISA SRP trigger)."
+  vuln-count:
+    description: "Total OSV.dev vulnerability findings across all scanned components."
+  readiness-score:
+    description: "Deterministic EU CRA Art. 14 readiness score (0-100)."
+  cra-art14-alert:
+    description: "Whether an immediate CRA Art. 14 24h early-warning review is required (true/false)."
+
+runs:
+  using: "node20"
+  main: "src/scan.mjs"

@@ -1,0 +1,37 @@
+{
+  "name": "cra-sbom-guard",
+  "version": "1.0.0",
+  "description": "Zero-dependency EU Cyber Resilience Act (CRA Art. 14) SBOM generator (CycloneDX 1.5) & CISA KEV / OSV.dev vulnerability scanner.",
+  "type": "module",
+  "main": "src/scan.mjs",
+  "bin": {
+    "cra-sbom-guard": "./src/scan.mjs"
+  },
+  "scripts": {
+    "test": "node --test tests/scan.test.mjs",
+    "scan": "node src/scan.mjs"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "keywords": [
+    "cyber-resilience-act",
+    "cra",
+    "eu-cra",
+    "sbom",
+    "cyclonedx",
+    "osv",
+    "cisa-kev",
+    "enisa",
+    "security",
+    "github-action"
+  ],
+  "author": "Yann Abadie",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yannabadie/cra-sbom-guard.git"
+  },
+  "homepage": "https://yannabadie.github.io/cra-sbom-guard/",
+  "dependencies": {}
+}

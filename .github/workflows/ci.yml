@@ -1,0 +1,46 @@
+name: CI — Tests & Self-Scan (CRA-SBOM-Guard)
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test-and-dogfood:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Run unit & live integration tests (OSV.dev + CISA KEV)
+        run: node --test tests/scan.test.mjs
+
+      - name: Dogfood CRA-SBOM-Guard Action on this repository
+        id: cra
+        uses: ./
+        with:
+          target: "."
+          sbom-output: "sbom.cdx.json"
+          report-output: "cra-report.json"
+          fail-on-kev: "true"
+
+      - name: Verify generated CycloneDX 1.5 SBOM & CRA report outputs
+        run: |
+          node -e '
+            const fs = require("node:fs");
+            const sbom = JSON.parse(fs.readFileSync("sbom.cdx.json", "utf8"));
+            const report = JSON.parse(fs.readFileSync("cra-report.json", "utf8"));
+            if (sbom.bomFormat !== "CycloneDX" || sbom.specVersion !== "1.5") process.exit(1);
+            if (report.summary.kevCount !== 0) process.exit(1);
+            console.log("Verified CycloneDX 1.5 SBOM & CRA report:", report.summary);
+          '
+          echo "Outputs: score=${{ steps.cra.outputs.readiness-score }}, kev=${{ steps.cra.outputs.kev-count }}"
