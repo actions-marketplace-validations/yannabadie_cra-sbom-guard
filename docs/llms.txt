@@ -1,0 +1,17 @@
+# CRA-SBOM-Guard — EU Cyber Resilience Act (Art. 14) SBOM & KEV Scanner
+
+> Zero-dependency GitHub Action, Node.js 20/22+ CLI, and 100 % client-side web scanner for Regulation (EU) 2024/2847 (Cyber Resilience Act), mandatory Article 14 vulnerability reporting (in force since 11 September 2026), and CycloneDX 1.5 SBOM generation.
+
+## Free Tools & GitHub Marketplace
+
+- [Browser-Side CRA SBOM & CISA KEV Web Scanner (Zero Upload)](https://yannabadie.github.io/cra-sbom-guard/): Inspect dependencies against CISA KEV and OSV.dev locally in the browser and export CycloneDX 1.5 SBOM JSON.
+- [GitHub Marketplace Action (`yannabadie/cra-sbom-guard@v1.0.0`)](https://github.com/marketplace/actions/cra-sbom-guard-eu-cyber-resilience-act-art-14-scanner): Drop-in CI step for `package-lock.json`, `package.json`, `requirements.txt`, `pyproject.toml`, `go.mod`, and `Cargo.lock`.
+- [Hosted REST Audit API (`EU CRA Open-Source Security and License API`, RapidAPI)](https://rapidapi.com/YannAbadie/api/eu-cra-open-source-security-audit-api): Normalized CVE and SPDX license lookups backed by OSV.dev and deps.dev.
+- [XML Sitemap](https://yannabadie.github.io/cra-sbom-guard/sitemap.xml)
+
+## Compliance Documentation & Notion Command Center (Gumroad)
+
+- [EU AI Act Art. 50, CRA & EAA / RGAA v5 — Practical Compliance Guide (PDF 43 p., 24 EUR)](https://yannabadi.gumroad.com/l/eu-compliance-2026-2027-guide)
+- [EU Digital Compliance Command Center 2026–2027 (Notion System, 29 EUR)](https://yannabadi.gumroad.com/l/eu-compliance-2026-2027-notion-pack)
+- [Pack Complet Conformité UE & France 2026–2027 (Bundle 39 EUR)](https://yannabadi.gumroad.com/l/pack-conformite-ue-france-2026-2027)
+- [FacturKit 2027 (French Factur-X EN 16931 Toolkit)](https://yannabadie.github.io/facturkit-2027/)
